@@ -9929,11 +9929,23 @@ a:focus {
   background-size: cover;
 }
 
+/* MET CUSTOM */
 .bg-gradient-danger {
   background-color: #e74a3b;
   background-image: linear-gradient(180deg, #e74a3b 10%, #be2617 100%);
   background-size: cover;
 }
+.bg-gradient-danger-r {
+  background-color: #e74a3b;
+  background-image: linear-gradient(90deg, #e74a3b 10%, #be2617 100%);
+  background-size: cover;
+}
+.bg-gradient-danger-l {
+  background-color: #e74a3b;
+  background-image: linear-gradient(270deg, #e74a3b 10%, #be2617 100%);
+  background-size: cover;
+}
+/* MET CUSTOM */
 
 .bg-gradient-light {
   background-color: #f8f9fc;
@@ -10867,7 +10879,7 @@ a:focus {
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+  background: url("/logo/appstore.png");
   background-position: center;
   background-size: cover;
 }
