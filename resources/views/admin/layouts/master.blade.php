@@ -27,11 +27,13 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <div id="content" class="bg-dark">
                 <!-- Topbar -->
                 @include('admin.layouts.topbar')
                 <!-- End of Topbar -->
-                @yield('content')
+                <div class=" m-4">
+                    @yield('content')
+                </div>
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
