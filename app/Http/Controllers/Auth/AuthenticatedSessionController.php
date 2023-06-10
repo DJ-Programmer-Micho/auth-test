@@ -26,10 +26,14 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $notification = array(
+            "message" => "Admin Login Successfully",
+            "alert-type" => "success"
+        );
+
+        return redirect()->intended(RouteServiceProvider::HOME)->with($notification);
     }
 
     /**

@@ -36,9 +36,18 @@ class PasswordResetLinkController extends Controller
             $request->only('email')
         );
 
+        $notification = array(
+            "message" => "Link sent to your email",
+            "alert-type" => "success"
+        );
+        $notificationError = array(
+            "message" => "Invalid Email Address",
+            "alert-type" => "error"
+        );
+
         return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
+                    ? back()->with('status', __($status))->with($notification)
                     : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+                            ->withErrors(['email' => __($status)])->with($notificationError);
     }
 }

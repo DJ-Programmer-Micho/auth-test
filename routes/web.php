@@ -25,7 +25,11 @@ Route::get('/dashboard', function () {
 
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/logout','destroy')->name('admin.logout');
-    Route::get('/admin/profile','profile')->name('admin.profile');
+    Route::get('/admin/profile','Profile')->name('admin.profile');
+    Route::get('/admin/profile/edit','EditProfile')->name('edit.profile');
+    Route::post('/admin/profile/store','StoreProfile')->name('store.profile');
+    Route::get('/admin/profile/passedit','EditPassword')->name('edit.password');
+    Route::post('/admin/profile/passupdate','StorePassword')->name('edit.save.password');
 });
 
 Route::middleware('auth')->group(function () {
