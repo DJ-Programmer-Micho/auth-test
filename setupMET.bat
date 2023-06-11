@@ -1,7 +1,10 @@
 @echo on
 
-REM Step 1
+REM Step 0
 cd auth-test
+
+REM Step 1
+call composer install
 
 REM Step 2
 call npm install
@@ -19,7 +22,7 @@ REM Step 6
 php artisan key:generate
 
 REM Step 7 (Please provide the actual URL for the setup page)
-start http://27.0.0.1:8000/metiraq/setup
+start http://127.0.0.1:8000/metiraq/setup
 
 REM Step 8
 start "" "cmd /k php artisan serve"
