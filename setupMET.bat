@@ -1,7 +1,10 @@
 @echo on
 
-REM Step 1
+REM Step 0
 cd auth-test
+
+REM Step 1
+call composer install
 
 REM Step 2
 call npm install
