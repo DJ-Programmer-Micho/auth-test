@@ -1,28 +1,25 @@
 @echo on
 
-REM Step 1: Clone the repository
-git clone https://github.com/DJ-Programmer-Micho/auth-test.git
-
-REM Step 2: Change directory to auth-test
+REM Step 1: Change directory to auth-test
 cd auth-test
 
-REM Step 3: Install dependencies
+REM Step 2: Install dependencies
 npm install
 
-REM Step 4: Build the project
+REM Step 3: Build the project
 npm run build
 
-REM Step 5: Create the .env file
+REM Step 4: Create the .env file
 type nul > .env
 
-REM Step 6: Copy from .env.example to .env
+REM Step 5: Copy from .env.example to .env
 copy .env.example .env
 
-REM Step 7: Generate the application key
+REM Step 6: Generate the application key
 php artisan key:generate
 
-REM Step 8: Start the server
+REM Step 7: Start the server
 php artisan serve
 
-REM Step 9: Copy the route file
+REM Step 8: Copy the route file
 copy routes\dtytroute.txt routes\web.php
