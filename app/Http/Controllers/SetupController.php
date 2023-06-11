@@ -41,7 +41,6 @@ class SetupController extends Controller
             'DB_PASSWORD' => '',
         ]);
     
-        // Set the database configuration dynamically
         config([
             'database.connections.mysql.host' => $validatedData['DB_HOST'],
             'database.connections.mysql.port' => $validatedData['DB_PORT'],
@@ -49,42 +48,33 @@ class SetupController extends Controller
             'database.connections.mysql.username' => $validatedData['DB_USERNAME'],
             'database.connections.mysql.password' => $validatedData['DB_PASSWORD'],
         ]);
-        // Establish a new database connection
+
         $connection = DB::reconnect('mysql');
-        // Create the new database
         $databaseName = $validatedData['DB_DATABASE'];
         $connection->statement("CREATE DATABASE IF NOT EXISTS $databaseName");
         $connection->statement("USE `$databaseName`");
-        // Switch to the newly created database
+
         config(['database.connections.mysql.database' => $databaseName]);
         $connection->statement("USE `$databaseName`");
-        // Run migrations on the new database
-        // dd($connection);
+
         Artisan::call('migrate', [
             '--force' => true,
         ]);
 
-
-
-        // Read the current .env file
         $envFilePath = base_path('.env');
         $envContent = file_get_contents($envFilePath);
 
-        // Update the environment variables
         foreach ($validatedData as $key => $value) {
             $key = strtoupper($key);
             $envContent = preg_replace('/^' . $key . '=.*/m', $key . '=' . $value, $envContent);
         }
-
-        // Save the updated .env file
         File::put($envFilePath, $envContent);
-        // Redirect or return a response
 
         $notification = array(
             "message" => "Database Installed Successfully",
             "alert-type" => "success"
         );
-        // BREAK
+
         return redirect()->route('setup.met.last')->with($notification);;
     }
 
@@ -107,16 +97,13 @@ class SetupController extends Controller
             // Validation failed
             $errors = $validator->errors()->all();
             return redirect()->back()->withErrors($errors)->withInput();
-            // return redirect()->back()->withErrors($validator)->withInput();
         }
         
-        // Validation passed, proceed with the rest of the logic
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            // 'email_verified_at' => Carbon::now(),
         ]);
 
         $user->email_verified_at = Carbon::now();
