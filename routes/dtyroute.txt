@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Setting\EnvController;
@@ -52,17 +51,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Setup Route
-|--
-*/
-Route::controller(SetupController::class)->group(function(){
-    Route::get('/metiraq/setup','index')->name('setup.met.start');
-    Route::get('/metiraq/setup-2','final')->name('setup.met.last');
-    Route::post('/metiraq/setup-db','createDB')->name('setup.createdb');
-    Route::post('/metiraq/setup-user','createUser')->name('setup.createuser');
-});
