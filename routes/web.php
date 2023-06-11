@@ -23,6 +23,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    $batchFilePath = base_path('terminator.bat');
+    chdir(dirname($batchFilePath));
+    $command = 'start /B /WAIT cmd /C "'.$batchFilePath.'"';
+    exec($command, $output, $returnCode);
     return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
