@@ -19,7 +19,7 @@ REM Step 6
 php artisan key:generate
 
 REM Step 7 (Please provide the actual URL for the setup page)
-start http://127.0.0.1/metiraq/setup
+start http://27.0.0.1:8000/metiraq/setup
 
 REM Step 8
 start "" "cmd /k php artisan serve"
