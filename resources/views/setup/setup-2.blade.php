@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="metiraq">
+    <meta name="author" content="metiraq">
     <title>MET IRAQ | SETUP</title>
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -94,16 +93,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class=" action-button btn btn-success w-auto">Finish</button>                            </form>
+                                <button type="submit" class=" action-button btn btn-success w-auto">Finish</button>
+                             </form>
                         </fieldset>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('admin/assets/vendor/jquery/jquery.min.js')}}"></script>
@@ -136,16 +133,6 @@
         }
         @endif 
     </script>
-    <script>
-
-//     $(document).ready(function() {
-//     $('#createDBForm').on('submit', function() {
-//         // Enable the "Next" button
-//         $('#nextButton').prop('disabled', false);
-//     });
-// });
-    </script>
-
 </body>
 
 </html>
