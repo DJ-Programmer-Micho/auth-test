@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Setting\EnvController;
 
 
@@ -78,4 +79,11 @@ require __DIR__.'/auth.php';
 */
 Route::get('/', function () {
     return view('main.home.index');
+});
+
+Route::controller(HomeSliderController::class)->group(function(){
+    Route::get('/home','HomeSlider')->name('home.slider');
+    Route::get('/admin/home','index')->name('home.index');
+    Route::get('/admin/create','create')->name('home.create');
+    Route::post('/admin/create','store')->name('home.store');
 });
