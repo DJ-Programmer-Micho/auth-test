@@ -18,15 +18,15 @@ use App\Http\Controllers\Setting\EnvController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
-    $batchFilePath = base_path('terminator.bat');
-    chdir(dirname($batchFilePath));
-    $command = 'start /B /WAIT cmd /C "'.$batchFilePath.'"';
-    exec($command, $output, $returnCode);
+    // $batchFilePath = base_path('terminator.bat');
+    // chdir(dirname($batchFilePath));
+    // $command = 'start /B /WAIT cmd /C "'.$batchFilePath.'"';
+    // exec($command, $output, $returnCode);
     return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -64,9 +64,18 @@ require __DIR__.'/auth.php';
 | Setup Route
 |--
 */
-Route::controller(SetupController::class)->group(function(){
-    Route::get('/metiraq/setup-4652-9857-7895-2321','index')->name('setup.met.start');
-    Route::get('/metiraq/setup-4652-9857-7895-2322','final')->name('setup.met.last');
-    Route::post('/metiraq/setup-4652-9857-7895-2323','createDB')->name('setup.createdb');
-    Route::post('/metiraq/setup-4652-9857-7895-2324','createUser')->name('setup.createuser');
+// Route::controller(SetupController::class)->group(function(){
+//     Route::get('/metiraq/setup-4652-9857-7895-2321','index')->name('setup.met.start');
+//     Route::get('/metiraq/setup-4652-9857-7895-2322','final')->name('setup.met.last');
+//     Route::post('/metiraq/setup-4652-9857-7895-2323','createDB')->name('setup.createdb');
+//     Route::post('/metiraq/setup-4652-9857-7895-2324','createUser')->name('setup.createuser');
+// });
+
+/*
+|--------------------------------------------------------------------------
+| Main Page Route (USER)
+|--
+*/
+Route::get('/', function () {
+    return view('main.home.index');
 });

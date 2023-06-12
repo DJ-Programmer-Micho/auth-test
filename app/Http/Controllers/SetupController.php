@@ -32,50 +32,50 @@ class SetupController extends Controller
     }
 
     public function createDB(Request $request){
-        $validatedData = $request->validate([
-            'DB_CONNECTION' => 'required',
-            'DB_HOST' => 'required',
-            'DB_PORT' => 'required',
-            'DB_DATABASE' => 'required',
-            'DB_USERNAME' => 'required',
-            'DB_PASSWORD' => '',
-        ]);
+        // $validatedData = $request->validate([
+        //     'DB_CONNECTION' => 'required',
+        //     'DB_HOST' => 'required',
+        //     'DB_PORT' => 'required',
+        //     'DB_DATABASE' => 'required',
+        //     'DB_USERNAME' => 'required',
+        //     'DB_PASSWORD' => '',
+        // ]);
     
-        config([
-            'database.connections.mysql.host' => $validatedData['DB_HOST'],
-            'database.connections.mysql.port' => $validatedData['DB_PORT'],
-            'database.connections.mysql.database' => null, // Set to null to connect to the default database
-            'database.connections.mysql.username' => $validatedData['DB_USERNAME'],
-            'database.connections.mysql.password' => $validatedData['DB_PASSWORD'],
-        ]);
+        // config([
+        //     'database.connections.mysql.host' => $validatedData['DB_HOST'],
+        //     'database.connections.mysql.port' => $validatedData['DB_PORT'],
+        //     'database.connections.mysql.database' => null, // Set to null to connect to the default database
+        //     'database.connections.mysql.username' => $validatedData['DB_USERNAME'],
+        //     'database.connections.mysql.password' => $validatedData['DB_PASSWORD'],
+        // ]);
 
-        $connection = DB::reconnect('mysql');
-        $databaseName = $validatedData['DB_DATABASE'];
-        $connection->statement("CREATE DATABASE IF NOT EXISTS $databaseName");
-        $connection->statement("USE `$databaseName`");
+        // $connection = DB::reconnect('mysql');
+        // $databaseName = $validatedData['DB_DATABASE'];
+        // $connection->statement("CREATE DATABASE IF NOT EXISTS $databaseName");
+        // $connection->statement("USE `$databaseName`");
 
-        config(['database.connections.mysql.database' => $databaseName]);
-        $connection->statement("USE `$databaseName`");
+        // config(['database.connections.mysql.database' => $databaseName]);
+        // $connection->statement("USE `$databaseName`");
 
-        Artisan::call('migrate', [
-            '--force' => true,
-        ]);
+        // Artisan::call('migrate', [
+        //     '--force' => true,
+        // ]);
 
-        $envFilePath = base_path('.env');
-        $envContent = file_get_contents($envFilePath);
+        // $envFilePath = base_path('.env');
+        // $envContent = file_get_contents($envFilePath);
 
-        foreach ($validatedData as $key => $value) {
-            $key = strtoupper($key);
-            $envContent = preg_replace('/^' . $key . '=.*/m', $key . '=' . $value, $envContent);
-        }
-        File::put($envFilePath, $envContent);
+        // foreach ($validatedData as $key => $value) {
+        //     $key = strtoupper($key);
+        //     $envContent = preg_replace('/^' . $key . '=.*/m', $key . '=' . $value, $envContent);
+        // }
+        // File::put($envFilePath, $envContent);
 
-        $notification = array(
-            "message" => "Database Installed Successfully",
-            "alert-type" => "success"
-        );
+        // $notification = array(
+        //     "message" => "Database Installed Successfully",
+        //     "alert-type" => "success"
+        // );
 
-        return redirect()->route('setup.met.last')->with($notification);;
+        // return redirect()->route('setup.met.last')->with($notification);;
     }
 
 
@@ -86,33 +86,33 @@ class SetupController extends Controller
 
     public function createUser(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required'],
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        //     'password' => ['required'],
+        // ]);
         
-        if ($validator->fails()) {
-            // Validation failed
-            $errors = $validator->errors()->all();
-            return redirect()->back()->withErrors($errors)->withInput();
-        }
+        // if ($validator->fails()) {
+        //     // Validation failed
+        //     $errors = $validator->errors()->all();
+        //     return redirect()->back()->withErrors($errors)->withInput();
+        // }
         
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        // $user = User::create([
+        //     'name' => $request->name,
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        // ]);
 
-        $user->email_verified_at = Carbon::now();
-        $user->save();
+        // $user->email_verified_at = Carbon::now();
+        // $user->save();
 
-        event(new Registered($user));
+        // event(new Registered($user));
     
-        Auth::login($user);
-        // Redirect or perform any additional actions
-        return redirect()->route('dashboard');
+        // Auth::login($user);
+        // // Redirect or perform any additional actions
+        // return redirect()->route('dashboard');
     }
 }
