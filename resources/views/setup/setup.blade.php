@@ -22,7 +22,7 @@
             <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                     <h2 id="heading">First Generate DataBaset</h2>
-                    <p>Fill all form field to go to next step</p>
+                    <p>Check The Requirments To Start</p>
                     <div id="msform">
                         <!-- progressbar -->
                         <ul id="progressbar">
@@ -40,7 +40,7 @@
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">Account Information:</h2>
+                                        <h2 class="fs-title">Requirments:</h2>
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps">Step 1 - 4</h2>

@@ -23,13 +23,13 @@
         <div class="row justify-content-center">
             <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                    <h2 id="heading">First Generate DataBaset</h2>
-                    <p>Fill all form field to go to next step</p>
+                    <h2 id="heading">Create Super Admin User</h2>
+                    <p>Fill all form field to go to install</p>
                     <div id="msform">
                         <!-- progressbar -->
                         <ul id="progressbar">
-                            <li class="active" id="payment"><strong>Add Admin</strong></li>
-                            <li id="confirm"><strong>Finish</strong></li>
+                            <li class="active" id="payment"><strong>Database Created</strong></li>
+                            <li id="confirm"><strong>Add Admin</strong></li>
                         </ul>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -39,24 +39,24 @@
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">Finish:</h2>
+                                        <h2 class="fs-title">Database Installed:</h2>
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps">Step 3 - 4</h2>
                                     </div>
                                 </div>
                                 <br><br>
-                                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2>
+                                <h2 class="purple-text text-center"><strong>SUCCESS!</strong></h2>
                                 <br>
                                 <div class="row justify-content-center">
-                                    <div class="col-1" style="color: rgb(1, 170, 1)">
-                                        <i class="fa-solid fa-check fa-bounce" style="font-size: 4em"></i>
+                                    <div class="col-1" style="color: var(--success)">
+                                        <i class="fa-solid fa-database fa-bounce" style="font-size: 4em"></i>
                                     </div>
                                 </div>
                                 <br><br>
                                 <div class="row justify-content-center">
                                     <div class="col-7 text-center">
-                                        <h5 class="text-white text-center">You Have Successfully Signed Up</h5>
+                                        <h5 class="text-white text-center">You Have Successfully Create Batabase</h5>
                                     </div>
                                 </div>
                             </div>

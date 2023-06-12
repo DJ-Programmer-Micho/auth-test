@@ -188,12 +188,12 @@ strong {
 
 #progressbar #payment:before {
     font-family: FontAwesome;
-    content: "\f234";
+    content: "\f1c0";
 }
 
 #progressbar #confirm:before {
     font-family: FontAwesome;
-    content: "\f11e";
+    content: "\f234";
 }
 
 /*Icon ProgressBar before any progress*/
