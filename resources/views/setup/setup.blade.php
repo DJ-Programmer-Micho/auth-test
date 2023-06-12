@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="metiraq">
+    <meta name="author" content="metiraq">
     <title>MET IRAQ | SETUP</title>
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -28,8 +28,6 @@
                         <ul id="progressbar">
                             <li class="active" id="account"><strong>Requirments</strong></li>
                             <li id="personal"><strong>Database</strong></li>
-                            {{-- <li id="payment"><strong>Add Admin</strong></li> --}}
-                            {{-- <li id="confirm"><strong>Finish</strong></li> --}}
                         </ul>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -138,74 +136,11 @@
                             </form>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                         </fieldset>
-                        {{-- <fieldset>
-                            <div class="form-card">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <h2 class="fs-title">Image Upload:</h2>
-                                    </div>
-                                    <div class="col-5">
-                                        <h2 class="steps">Step 3 - 4</h2>
-                                    </div>
-                                </div>
-                                <form id="" method="post" action="{{route('setup.createuser')}}">
-                                    @csrf
-                                    <div class="row p-0">
-                                        <div class="col-12">
-                                            <label class="fieldlabels">Full Name:</label>
-                                            <input type="text" name="name" id="name" placeholder="First Last Name"/>
-                                        </div>
-                                        <div class="col-12">
-                                            <label class="fieldlabels">Admin Name:</label>
-                                            <input type="text" name="username" id="username" placeholder="Admin"/>
-                                        </div>
-                                        <div class="col-12">
-                                            <label class="fieldlabels">Admin Email</label>
-                                            <input type="text" name="email" id="email" placeholder="admin@admin.com"/>
-                                        </div>
-                                        <div class="col-12">
-                                            <label class="fieldlabels">Password</label>
-                                            <input type="text" name="password" id="password" placeholder="********"/>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <button type="submit" name="next" class="next action-button">Submit</button>
-                            <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                        </fieldset>
-                        <fieldset>
-                            <div class="form-card">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <h2 class="fs-title">Finish:</h2>
-                                    </div>
-                                    <div class="col-5">
-                                        <h2 class="steps">Step 4 - 4</h2>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2>
-                                <br>
-                                <div class="row justify-content-center">
-                                    <div class="col-1" style="color: rgb(1, 170, 1)">
-                                        <i class="fa-solid fa-check fa-bounce" style="font-size: 4em"></i>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <div class="row justify-content-center">
-                                    <div class="col-7 text-center">
-                                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset> --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('admin/assets/vendor/jquery/jquery.min.js')}}"></script>
