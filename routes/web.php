@@ -23,20 +23,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-
     $batchFilePath = base_path('terminator.bat');
-
-    // Change the working directory to the location of the batch file
     chdir(dirname($batchFilePath));
-
-    // Construct the command with the full path to the batch file
     $command = 'start /B /WAIT cmd /C "'.$batchFilePath.'"';
-
-    // Execute the command using the shell_exec() function
-    $output = shell_exec($command);
-
-    // Check the output for any error messages or process the output as needed
-    // Note: You can also capture the exit code if required
+    exec($command, $output, $returnCode);
     return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
