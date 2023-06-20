@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Other\FactController;
+use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Setting\EnvController;
+use App\Http\Controllers\Home\HomeSliderController;
 
 
 /*
@@ -86,4 +88,14 @@ Route::controller(HomeSliderController::class)->group(function(){
     Route::get('/admin/home','index')->name('home.index');
     Route::get('/admin/create','create')->name('home.create');
     Route::post('/admin/create','store')->name('home.store');
+});
+
+Route::controller(AboutController::class)->group(function(){
+    Route::get('/admin/about/create','create')->name('about.create');
+    Route::post('/admin/about/create','store')->name('about.store');
+});
+
+Route::controller(FactController::class)->group(function(){
+    Route::get('/admin/fact/create','create')->name('fact.create');
+    Route::post('/admin/fact/create','store')->name('fact.store');
 });

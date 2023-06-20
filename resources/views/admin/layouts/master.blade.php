@@ -77,7 +77,7 @@
     <script src="{{asset('admin/assets/js/main/sb-admin-2.min.js')}}"></script>
     <!-- Page level plugins -->
     <script src="{{asset('admin/assets/vendor/chart.js/Chart.min.js')}}"></script>
-
+    @stack('iconscript')
     <!-- Page level custom scripts -->
     {{-- <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script> --}}

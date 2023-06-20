@@ -75,6 +75,10 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Home page:</h6>
+                <a class="collapse-item" href="{{route('fact.create')}}">Facts Page</a>
+                <a class="collapse-item" href="{{route('about.create')}}">About Page</a>
+                <h6 class="collapse-header">Other:</h6>
                 <h6 class="collapse-header">Login Screens:</h6>
                 <a class="collapse-item" href="#">Login</a>
                 <a class="collapse-item" href="#">Register</a>
