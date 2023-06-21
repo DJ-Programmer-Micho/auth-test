@@ -81,7 +81,7 @@ class HomeSliderController extends Controller
 
         foreach ($data as $item) {
             HomeSlide::where('id', $specificId)->update([
-                'properties' => json_encode($item),
+                'properties' => json_encode($data),
             ]);
         }
 

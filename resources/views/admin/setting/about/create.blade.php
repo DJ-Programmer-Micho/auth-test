@@ -58,63 +58,98 @@
     }
 </style>
 <div class="m-4 p-0" style="color:#fff">
-    <form action="{{route('home.create')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('about.create')}}" method="POST" enctype="multipart/form-data">
         @csrf
         
         <div class="row mb-5">
-            @for ($i = 0; $i < 3; $i++)
-            <div class="col-12 col-lg-4">
+
+            <div class="col-6">
             <div class="card bg-card-dark rounded border-4 mb-2 p-1 text-white">
-        <h1>Slide No.{{$i+1}}</h1>
-        @for ($j = 0; $j < 1; $j++)
-            <div class="col-12 mb-3">
-                <label for="title{{ $i }}">Title {{ $i+1 }}:</label>
-                <input type="text" name="title{{ $i }}" id="title{{ $i }}" class="form-control" value="{{ $properties[$i]['title'] ?? '' }}">
-                <small class="text-danger"><b>(Required)</b></small>
-            </div>
-            <div class="col-12 mb-3">
-                <label for="head_title{{ $i }}" class="form-label">Description {{ $i+1 }}:</label>
-                <textarea name="head_title{{ $i }}" id="head_title{{ $i }}"  class="form-control" value="{{ $properties[$i]['short_title'] ?? '' }}">
-                <small class="text-danger"><b>(Required)</b></small>
-            </div>
-                <div class="col-12 mb-3">
-                    <label for="button_txt1{{ $i }}">First Button Text {{ $i+1 }}:</label>
-                    <input type="text" name="button_txt1{{ $i }}" id="button_txt1{{ $i }}" class="form-control" value="{{ $properties[$i]['button_txt1'] ?? '' }}">
-                    <small class="text-info"><b>(optional)</b></small>
+                <h1 class="mx-2">About</h1>
+                <hr class="bg-white">
+                <div class="row m-0 p-1">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="tag_title" class="form-label">Head Title:</label>
+                            <input type="text" name="tag_title" id="tag_title"  class="form-control" value="{{ $properties['tag_title'] ?? 'not found' }}">
+                            <small class="text-danger"><b>(Required)</b></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="title">Title:</label>
+                            <input type="text" name="title" id="title" class="form-control" value="{{ $properties['title'] ?? '' }}">
+                            <small class="text-danger"><b>(Required)</b></small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3 d-flex justify-content-center mt-1">
+                            <img id="showImg" src="{{ (!empty($properties['img']))? url('admin/slider/'.$properties['img'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="button_url1{{ $i }}">First Button URL {{ $i+1 }}</label>
-                    <input type="text" name="button_url1{{ $i }}" id="button_url1{{ $i }}" class="form-control" value="{{ $properties[$i]['button_url1'] ?? '' }}">
-                    <small class="text-info"><b>(optional)</b></small>
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="button_txt2{{ $i }}">Second Button Text {{ $i+1 }}</label>
-                    <input type="text" name="button_txt2{{ $i }}" id="button_txt2{{ $i }}" class="form-control" value="{{ $properties[$i]['button_txt2'] ?? '' }}">
-                    <small class="text-info"><b>(optional)</b></small>
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="button_url2{{ $i }}">Second Button URL {{ $i+1 }}</label>
-                    <input type="text" name="button_url2{{ $i }}" id="button_url2{{ $i }}" class="form-control" value="{{ $properties[$i]['button_url2'] ?? '' }}">
-                    <small class="text-info"><b>(optional)</b></small>
-                </div>
-                {{-- <div class="col-12 mb-3">
-                    <label for="img{{ $i }}">Image {{ $i }}</label>
-                    <input type="text" name="img{{ $i }}" id="img{{ $i }}" class="form-control" value="{{ $properties[$i]['img'] ?? '' }}">
-                </div> --}}
-                <div class="col-12 mb-3">
-                    <label for="img{{ $i }}">Image {{ $i+1 }}</label>
-                    <input type="file" name="img{{ $i }}"  id="avatarImg{{ $i }}" class="form-control metControl" style="height: auto" value="{{ $properties[$i]['img'] ?? '' }}" for="{{$i}}">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description" class="form-control">{{ $properties['description'] ?? '' }}</textarea>
                     <small class="text-danger"><b>(Required)</b></small>
-                    <input type="file" name="croppedImg{{ $i }}" id="croppedImg{{ $i }}" style="display: none;">
                 </div>
-                <div class="col-12 mb-3 text-center">
-                    <img id="showImg{{$i}}" src="{{ (!empty($properties[$i]['img']))? url('admin/slider/'.$properties[$i]['img'] ):url('admin/avatars/empty.svg')}}" width="90" class="img-thumbnail rounded">
+                <div class="col-12 mb-3">
+                    <label for="action_title">Action Title:</label>
+                    <input type="text" name="action_title" id="action_title" class="form-control" value="{{ $properties['action_title'] ?? '' }}">
+                    <small class="text-info"><b>(optional)</b></small>
                 </div>
-                <input type="hidden" id="asd{{$i}}" value="{{$i}}">
-                @endfor
+                <div class="col-12 mb-3">
+                    <label for="action_text">Action Text:</label>
+                    <input type="text" name="action_text" id="action_text" class="form-control" value="{{ $properties['action_text'] ?? '' }}">
+                    <small class="text-info"><b>(optional)</b></small>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label for="button_txt">Button Text</label>
+                    <input type="text" name="button_txt" id="button_txt" class="form-control" value="{{ $properties['button_txt'] ?? '' }}">
+                    <small class="text-info"><b>(optional)</b></small>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="button_url">Button URL</label>
+                    <input type="text" name="button_url" id="button_url" class="form-control" value="{{ $properties['button_url'] ?? '' }}">
+                    <small class="text-info"><b>(optional)</b></small>
+                </div>
             </div>
             </div>
-            @endfor
+            <div class="col-6">
+                <div class="card bg-card-dark rounded border-4 mb-2 p-1 text-white">
+                    <h1 class="mx-2">Services</h1>
+                    <hr class="bg-white">
+                    <div class="col-12 mb-3">
+                        <label for="service1">Service No.1:</label>
+                        <input type="text" name="service1" id="Service1" class="form-control" value="{{ $properties['service1'] ?? '' }}">
+                        <small class="text-info"><b>(optional)</b></small>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="service2">Service No.2:</label>
+                        <input type="text" name="service2" id="service2" class="form-control" value="{{ $properties['service2'] ?? '' }}">
+                        <small class="text-info"><b>(optional)</b></small>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="service3">Service No.3:</label>
+                        <input type="text" name="service3" id="service3" class="form-control" value="{{ $properties['service3'] ?? '' }}">
+                        <small class="text-info"><b>(optional)</b></small>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="service4">Service No.4:</label>
+                        <input type="text" name="service4" id="service4" class="form-control" value="{{ $properties['service4'] ?? '' }}">
+                        <small class="text-info"><b>(optional)</b></small>
+                    </div>
+                </div>
+                <div class="card bg-card-dark rounded border-4 mb-2 p-1 text-white">
+                <div class="col-12 mb-3">
+                    <h1 class="mx-2">Image</h1>
+                    <hr class="bg-white">
+                    <label for="img">Upload Image</label>
+                    <input type="file" name="img"  id="avatarImg" class="form-control metControl" style="height: auto" value="{{ $properties['img'] ?? '' }}" for="">
+                    <small class="text-danger"><b>(Required)</b></small>
+                    <input type="file" name="croppedImg" id="croppedImg" style="display: none;">
+                </div>
+                </div>
+                </div>
         </div>
         
         <div class="text-center">
@@ -171,11 +206,8 @@
             var modal = new bootstrap.Modal(document.getElementById('modal'));
             var cropper
             
-            @for ($i = 0; $i < 3; $i++)
-            (function(i) {
-                $('#avatarImg{{$i}}').change(function(event) {
+                $('#avatarImg').change(function(event) {
                     var image = document.getElementById('sample_image');
-                    console.log('Clicked on #avatarImg' + i);
                     var files = event.target.files;
                     var done = function(url) {
                         image.src = url;
@@ -188,20 +220,17 @@
                         };
                         reader.readAsDataURL(files[0]);
                     }
-                    handleCropButtonClick(i, image);
-                    console.log('clicked ID'+i)
+                    handleCropButtonClick(image);
                 });
-    
-            })({{$i}});
-            @endfor
 
-            function handleCropButtonClick(i,image) {
+
+            function handleCropButtonClick(image) {
                 $('#modal').on('shown.bs.modal', function() {
                     if (cropper) {
                         cropper.destroy();
                     }
                     cropper = new Cropper(image, {
-                        aspectRatio: 1280/480,
+                        aspectRatio: 1/1,
                         viewMode: 1,
                         preview: '.preview'
                     });
@@ -209,8 +238,8 @@
 
                 $('.crop-btn').off('click').on('click', function() {
                     var canvas = cropper.getCroppedCanvas({
-                        width: 1280,
-                        height: 480
+                        width: 1080,
+                        height: 1080
                     });
 
                     canvas.toBlob(function(blob) {
@@ -220,21 +249,17 @@
                         reader.onloadend = function() {
                             var base64data = reader.result;
                             modal.hide();
-                            var currentIndex = i;
-                            $('#showImg' + currentIndex).attr('src', base64data);
-                            console.log('done');
+                            $('#showImg').attr('src', base64data);
                         };
                         reader.readAsDataURL(blob);
 
-                        var file = new File([blob], `MET${i}.jpg`, { type: "image/jpeg" });
-                        var currentIndex = i;
-                        var fileInput = document.getElementById('croppedImg' + currentIndex);
+                        var file = new File([blob], `met_about.jpg`, { type: "image/jpeg" });
+                        var fileInput = document.getElementById('croppedImg');
                         var dataTransfer = new DataTransfer();
                         dataTransfer.items.add(file);
                         fileInput.files = dataTransfer.files;
 
                         modal.hide();
-                        console.log('done');
                     }, "image/jpeg");
                 });
             }
