@@ -68,6 +68,7 @@ class AboutController extends Controller
                 'service2' => $request->input('service2'), 
                 'service3' => $request->input('service3'), 
                 'service4' => $request->input('service4'), 
+                'icon' => $request->input('icon'), 
                 'button_url' => $request->input('button_url'), 
                 'img' => $imgPath,
             ];

@@ -1,4 +1,4 @@
-@extends('main.layouts.master')
+{{-- @extends('main.layouts.master')
 
 @section('content')
 @include('main.home.slider')
@@ -487,4 +487,4 @@
         </div>
     </div>
     <!-- Vendor End -->
-@endsection
+@endsection --}}

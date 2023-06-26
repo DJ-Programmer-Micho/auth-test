@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Other\FactController;
@@ -58,6 +59,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::controller(AboutController::class)->group(function(){
+    Route::get('/admin/about/create','create')->name('about.create');
+    Route::post('/admin/about/create','store')->name('about.store');
+});
+
+Route::controller(PageController::class)->group(function(){
+    Route::get('/admin/page/','index')->name('about.index');
+    Route::get('/admin/page/edit','edit')->name('about.edit');
+    Route::get('/admin/page/create','create')->name('about.create');
+    Route::post('/admin/page/edit','store')->name('update.properties');
+});
+
 require __DIR__.'/auth.php';
 
 
@@ -80,7 +93,10 @@ require __DIR__.'/auth.php';
 |--
 */
 Route::get('/', function () {
-    return view('main.home.index');
+    return view('main.pages.indexHome');
+});
+Route::get('/about', function () {
+    return view('main.pages.indexAbout');
 });
 
 Route::controller(HomeSliderController::class)->group(function(){
@@ -90,10 +106,6 @@ Route::controller(HomeSliderController::class)->group(function(){
     Route::post('/admin/create','store')->name('home.store');
 });
 
-Route::controller(AboutController::class)->group(function(){
-    Route::get('/admin/about/create','create')->name('about.create');
-    Route::post('/admin/about/create','store')->name('about.store');
-});
 
 Route::controller(FactController::class)->group(function(){
     Route::get('/admin/fact/create','create')->name('fact.create');

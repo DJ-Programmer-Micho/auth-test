@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    {{-- @stack('sort-meta') --}}
+    
     <title>MET IRAQ</title>
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -15,6 +17,7 @@
     <link href="{{asset('admin/assets/css/toster.css')}}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/assets/css/sb-admin-2.css')}}" rel="stylesheet" type="text/css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body id="page-top">

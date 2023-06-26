@@ -77,6 +77,8 @@
                     <input type="text" name="title{{ $i }}" id="title{{ $i }}" class="form-control" value="{{ $properties[$i]['title'] ?? '' }}">
                     <small class="text-danger"><b>(Required)</b></small>
                 </div>
+                <div class="border mb-1">
+                    <small class="text-warning mx-2 mb-3"><i class="fa-solid fa-triangle-exclamation"></i> Both Field Are Required If (One Of The Field Is Filled)</small>
                 <div class="col-12 mb-3">
                     <label for="button_txt1{{ $i }}">First Button Text {{ $i+1 }}:</label>
                     <input type="text" name="button_txt1{{ $i }}" id="button_txt1{{ $i }}" class="form-control" value="{{ $properties[$i]['button_txt1'] ?? '' }}">
@@ -87,6 +89,9 @@
                     <input type="text" name="button_url1{{ $i }}" id="button_url1{{ $i }}" class="form-control" value="{{ $properties[$i]['button_url1'] ?? '' }}">
                     <small class="text-info"><b>(optional)</b></small>
                 </div>
+                </div>
+                <div class="border">
+                    <small class="text-warning mx-2 mb-3"><i class="fa-solid fa-triangle-exclamation"></i> Both Field Are Required If (One Of The Field Is Filled)</small>
                 <div class="col-12 mb-3">
                     <label for="button_txt2{{ $i }}">Second Button Text {{ $i+1 }}</label>
                     <input type="text" name="button_txt2{{ $i }}" id="button_txt2{{ $i }}" class="form-control" value="{{ $properties[$i]['button_txt2'] ?? '' }}">
@@ -96,6 +101,7 @@
                     <label for="button_url2{{ $i }}">Second Button URL {{ $i+1 }}</label>
                     <input type="text" name="button_url2{{ $i }}" id="button_url2{{ $i }}" class="form-control" value="{{ $properties[$i]['button_url2'] ?? '' }}">
                     <small class="text-info"><b>(optional)</b></small>
+                </div>
                 </div>
                 {{-- <div class="col-12 mb-3">
                     <label for="img{{ $i }}">Image {{ $i }}</label>

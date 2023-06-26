@@ -41,7 +41,6 @@ class HomeSliderController extends Controller
     {
         $data = [];
         $specificId = 1;
-       
 
         for ($i = 0; $i < 3; $i++) {
             $short_title = $request->input('head_title' . $i);

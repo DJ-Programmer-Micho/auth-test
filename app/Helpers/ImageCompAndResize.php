@@ -1,9 +1,5 @@
 <?php
 
-// namespace App\Helpers;
-
-// // use Intervention\Image\Facades\Image;
-// use Intervention\Image\Image;
 use Intervention\Image\Facades\Image;
 
 function resizeAndCompress($imagePath, $width, $height)
@@ -20,8 +16,3 @@ function resizeAndCompress($imagePath, $width, $height)
         
         return $resizedImage;
     }
-
-
-function msh($asd,$qwe){
-    return "fuck laravel".$asd.$qwe;
-}

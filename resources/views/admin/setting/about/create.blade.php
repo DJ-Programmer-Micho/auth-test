@@ -5,6 +5,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.5/cropper.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.5/cropper.min.js"></script>
+<script src="{{asset('admin/assets/js/main/met-icon.js')}}"></script>
+<link rel="stylesheet" href="{{asset('admin/assets/css/met-icon.css')}}">
 {{-- inline style for modal --}}
 <style>
     .image_area {
@@ -91,16 +93,7 @@
                     <textarea name="description" id="description" class="form-control">{{ $properties['description'] ?? '' }}</textarea>
                     <small class="text-danger"><b>(Required)</b></small>
                 </div>
-                <div class="col-12 mb-3">
-                    <label for="action_title">Action Title:</label>
-                    <input type="text" name="action_title" id="action_title" class="form-control" value="{{ $properties['action_title'] ?? '' }}">
-                    <small class="text-info"><b>(optional)</b></small>
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="action_text">Action Text:</label>
-                    <input type="text" name="action_text" id="action_text" class="form-control" value="{{ $properties['action_text'] ?? '' }}">
-                    <small class="text-info"><b>(optional)</b></small>
-                </div>
+
 
                 <div class="col-12 mb-3">
                     <label for="button_txt">Button Text</label>
@@ -111,6 +104,27 @@
                     <label for="button_url">Button URL</label>
                     <input type="text" name="button_url" id="button_url" class="form-control" value="{{ $properties['button_url'] ?? '' }}">
                     <small class="text-info"><b>(optional)</b></small>
+                </div>
+            </div>
+            <div class="card bg-card-dark rounded border-4 mb-2 p-1 text-white">
+                <h1 class="mx-2">About</h1>
+                <hr class="bg-white">
+                <div class="col-12 mb-3">
+                    <label for="action_title">Action Title:</label>
+                    <input type="text" name="action_title" id="action_title" class="form-control" value="{{ $properties['action_title'] ?? '' }}">
+                    <small class="text-info"><b>(optional)</b></small>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="action_text">Action Text:</label>
+                    <input type="text" name="action_text" id="action_text" class="form-control" value="{{ $properties['action_text'] ?? '' }}">
+                    <small class="text-info"><b>(optional)</b></small>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="icon">Icon:</label>
+                    <select id="iconSelect" class="js-example-basic-single form-control" name="icon">
+                        <option class="d-block" selected disabled>{{ $properties['icon'] ?? 'Select an Icon' }}</option>
+                    </select>
+                    <small class="text-danger"><b>(Required)</b></small>
                 </div>
             </div>
             </div>
@@ -191,16 +205,65 @@
 
     {{-- $(document).ready(function(){
         @for ($i = 0; $i < 3; $i++)
-        $('#avatarImg{{ $i }}').change(function(e){
+        $('#avatarImg').change(function(e){
             var reader = new FileReader();
             reader.onload = function(e){
-                $('#showImg{{ $i }}').attr('src', e.target.result);
+                $('#showImg').attr('src', e.target.result);
             }
             reader.readAsDataURL(e.target.files[0]);
         });
         @endfor
     }); --}}
+    @push('iconscript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>  
+    
+    <script>
+        $(document).ready(function() {
+            // Load the icons from the JSON file
+            $.getJSON('{{ asset("admin/icons.json") }}', function(icons) {
 
+                    var select = $('#iconSelect');
+    
+                    icons.forEach(function(icon) {
+                        // Create an <option> element with the icon's name and unicode
+                        var option = $('<option>').val(icon.iconName).text(icon.iconName).attr('data-icon-name', icon.iconName).addClass('hidden-option');
+                        select.append(option);
+    
+                    });
+    
+                    // Initialize Select2 on the select elements
+                    select.select2({
+                        escapeMarkup: function(markup) {
+                            return markup;
+                        },
+                        templateResult: function(icon) {
+                            if (!icon.id) {
+                                return icon.text;
+                            }
+    
+                            var $icon = $('<i>').addClass('fas ' + icon.id);
+                            var $text = $('<span>').text(' ' + icon.text);
+                            return $('<span>').append($icon).append($text);
+                        },
+                        templateSelection: function(icon) {
+                            if (!icon.id) {
+                                return icon.text;
+                            }
+    
+                            var $icon = $('<i>').addClass('fas ' + icon.id);
+                            return $('<span>').append($icon);
+                        }
+                    });
+
+            });
+        });
+    </script>
+    @endpush
     <script>
         $(document).ready(function() {
             var modal = new bootstrap.Modal(document.getElementById('modal'));
