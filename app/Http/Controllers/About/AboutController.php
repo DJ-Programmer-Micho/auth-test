@@ -8,14 +8,13 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
-    // public function index()
-    // {
+    public function index()
+    {
+        $item = About::find(1);
+        $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
 
-    //     $item = Fact::find(1);
-    //     $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
-
-    //     return view('admin.setting.home.index', compact('properties'));
-    // }
+        return view('admin.pages.aboutUs.index', compact('properties'));
+    } //End Method
 
     public function create()
     {
@@ -28,60 +27,49 @@ class AboutController extends Controller
         }
 
         $properties = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
- 
-        return view('admin.setting.about.create', compact('properties'));
-    }
+
+        return view('admin.pages.aboutUs.create', compact('properties'));
+    } //End Function
 
     public function store(Request $request)
     {
         $data = [];
         $specificId = 1;
+        $img = $request->file('croppedImg');
+        
         $imgPath = null;
 
-            // $symbolL = $request->input('synmbolL' . $i);
-            // $count = $request->input('count' . $i);
-            // $symbolR = $request->input('synmbolR' . $i);
-            // $icon = $request->input('icon' . $i);
-            $img = $request->file('croppedImg');
-            
+        if ($img) {
+            $filename = date('YdmHi')  .$img->getClientOriginalName(). '.jpg';
+            $resizedImage = resizeAndCompress($img, 1080, 1080);
+            $resizedImage->save(public_path('admin/slider/' . $filename),60);
+            $imgPath = $filename;
+        } else {
+            $previousSlide = About::where('id', $specificId)->first();
+            $previousData = json_decode($previousSlide->properties, true);
+            $imgPath = $previousData[0]['img'] ?? null;
+        };
 
-            if ($img) {
-                $filename = date('YdmHi')  .$img->getClientOriginalName(). '.jpg';
-                $resizedImage = resizeAndCompress($img, 1080, 1080);
-                $resizedImage->save(public_path('admin/slider/' . $filename),60);
-                $imgPath = $filename;
-            } else {
-                $previousSlide = About::where('id', $specificId)->first();
-                $previousData = json_decode($previousSlide->properties, true);
-                $imgPath = $previousData['img'] ?? null;
-            };
+        $data[] = [
+            'tag_title' => $request->input('tag_title'), 
+            'title' => $request->input('title'), 
+            'description' => $request->input('description'), 
+            'action_title' => $request->input('action_title'), 
+            'action_text' => $request->input('action_text'), 
+            'button_txt' => $request->input('button_txt'), 
+            'button_url' => $request->input('button_url'), 
+            'service1' => $request->input('service1'), 
+            'service2' => $request->input('service2'), 
+            'service3' => $request->input('service3'), 
+            'service4' => $request->input('service4'), 
+            'icon' => $request->filled('icon') ? $request->input('icon') : $previousData[0]['icon'] ?? null,
+            'button_url' => $request->input('button_url'), 
+            'img' => $imgPath,
+        ];
 
-            $data[] = [
-                'tag_title' => $request->input('tag_title'), 
-                'title' => $request->input('title'), 
-                'description' => $request->input('description'), 
-                'action_title' => $request->input('action_title'), 
-                'action_text' => $request->input('action_text'), 
-                'button_txt' => $request->input('button_txt'), 
-                'button_url' => $request->input('button_url'), 
-                'service1' => $request->input('service1'), 
-                'service2' => $request->input('service2'), 
-                'service3' => $request->input('service3'), 
-                'service4' => $request->input('service4'), 
-                'icon' => $request->input('icon'), 
-                'button_url' => $request->input('button_url'), 
-                'img' => $imgPath,
-            ];
+        About::where('id', $specificId)->update([
+            'properties' => json_encode($data),
+        ]);
 
-
-
-        // foreach ($data as $item) {
-            About::where('id', $specificId)->update([
-                'properties' => json_encode($data),
-            ]);
-        // }
-
-        return redirect()->route('about.create');
-    }
-    // dd($request->file('croppedImg0'),$request->file('croppedImg1'),$request->file('croppedImg2'));
-}
+        return redirect()->route('about.index');
+    }}

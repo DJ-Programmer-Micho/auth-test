@@ -12,19 +12,15 @@ class HomeSliderController extends Controller
 {
     public function index()
     {
-        // $item = HomeSlide::find(2);
-        // $properties = $item->properties;
-        // return view('admin.setting.home.index', compact('properties'));
         $item = HomeSlide::find(1);
-        $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
 
-        // dd($properties);
-        return view('admin.setting.home.index', compact('properties'));
-    }
+        $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
+        return view('admin.pages.homeSlider.index', compact('properties'));
+    } //End Function
+
     public function create()
     {
         $item = HomeSlide::find(1);
-
 
         if (!$item) {
             $item = new HomeSlide();
@@ -34,8 +30,8 @@ class HomeSliderController extends Controller
 
         $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
  
-        return view('admin.setting.home.create', compact('properties'));
-    }
+        return view('admin.pages.homeSlider.create', compact('properties'));
+    } //End Function
 
     public function store(Request $request)
     {
@@ -78,12 +74,10 @@ class HomeSliderController extends Controller
             ];
         }
 
-        foreach ($data as $item) {
-            HomeSlide::where('id', $specificId)->update([
-                'properties' => json_encode($data),
-            ]);
-        }
-
+        HomeSlide::where('id', $specificId)->update([
+            'properties' => json_encode($data),
+        ]);
+  
         return redirect()->route('home.index');
-    }
+    } //End Function
 }

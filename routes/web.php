@@ -9,6 +9,7 @@ use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Setting\EnvController;
 use App\Http\Controllers\Home\HomeSliderController;
+use App\Http\Controllers\Other\WhyChooseUsController;
 
 
 /*
@@ -59,15 +60,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(AboutController::class)->group(function(){
-    Route::get('/admin/about/create','create')->name('about.create');
-    Route::post('/admin/about/create','store')->name('about.store');
-});
 
 Route::controller(PageController::class)->group(function(){
-    Route::get('/admin/page/','index')->name('about.index');
-    Route::get('/admin/page/edit','edit')->name('about.edit');
-    Route::get('/admin/page/create','create')->name('about.create');
+    Route::get('/admin/page/','index')->name('page.index');
+    Route::get('/admin/page/edit','edit')->name('page.edit');
+    Route::get('/admin/page/create','create')->name('page.create');
     Route::post('/admin/page/edit','store')->name('update.properties');
 });
 
@@ -100,14 +97,25 @@ Route::get('/about', function () {
 });
 
 Route::controller(HomeSliderController::class)->group(function(){
-    Route::get('/home','HomeSlider')->name('home.slider');
-    Route::get('/admin/home','index')->name('home.index');
-    Route::get('/admin/create','create')->name('home.create');
-    Route::post('/admin/create','store')->name('home.store');
+    Route::get('/admin/homeslider','index')->name('home.index'); //ADMIN SIDE PAGE
+    Route::get('/admin/homeslider/create','create')->name('home.create'); //ADMIN SIDE PAGE
+    Route::post('/admin/homeslider/create','store')->name('home.store'); //ADMIN SIDE PAGE
 });
 
-
 Route::controller(FactController::class)->group(function(){
-    Route::get('/admin/fact/create','create')->name('fact.create');
-    Route::post('/admin/fact/create','store')->name('fact.store');
+    Route::get('/admin/fact','index')->name('fact.index'); 
+    Route::get('/admin/fact/create','create')->name('fact.create'); 
+    Route::post('/admin/fact/create','store')->name('fact.store'); 
+});
+
+Route::controller(AboutController::class)->group(function(){
+    Route::get('/admin/about','index')->name('about.index'); //ADMIN SIDE PAGE
+    Route::get('/admin/about/create','create')->name('about.create'); //ADMIN SIDE PAGE
+    Route::post('/admin/about/create','store')->name('about.store'); //ADMIN SIDE PAGE
+});
+
+Route::controller(WhyChooseUsController::class)->group(function(){
+    Route::get('/admin/wcu','index')->name('wcu.index'); //ADMIN SIDE PAGE
+    Route::get('/admin/wcu/create','create')->name('wcu.create'); //ADMIN SIDE PAGE
+    Route::post('/admin/wcu/create','store')->name('wcu.store'); //ADMIN SIDE PAGE
 });

@@ -63,9 +63,64 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Addons
+        Components
     </div>
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#homeSlider"
+            aria-expanded="true" aria-controls="homeSlider">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Home Slider</span>
+        </a>
+        <div id="homeSlider" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Home Slider Comp.:</h6>
+                <a class="collapse-item" href="{{route('home.index')}}">Index</a>
+                <a class="collapse-item" href="{{route('home.create')}}">Create</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#facts"
+            aria-expanded="true" aria-controls="facts">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Facts</span>
+        </a>
+        <div id="facts" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Fact Comp.:</h6>
+                <a class="collapse-item" href="{{route('fact.index')}}">Index</a>
+                <a class="collapse-item" href="{{route('fact.create')}}">Create</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#aboutus"
+            aria-expanded="true" aria-controls="aboutus">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>About Us</span>
+        </a>
+        <div id="aboutus" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Why Choose Us Comp.:</h6>
+                <a class="collapse-item" href="{{route('about.index')}}">Index</a>
+                <a class="collapse-item" href="{{route('about.create')}}">Create</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#whychooseus"
+            aria-expanded="true" aria-controls="whychooseus">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Why Choose Us</span>
+        </a>
+        <div id="whychooseus" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Why Choose Us Comp.:</h6>
+                <a class="collapse-item" href="{{route('wcu.index')}}">Index</a>
+                <a class="collapse-item" href="{{route('wcu.create')}}">Create</a>
+            </div>
+        </div>
+    </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"

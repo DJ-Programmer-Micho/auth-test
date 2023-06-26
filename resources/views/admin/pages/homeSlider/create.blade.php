@@ -160,117 +160,80 @@
     </div>
 </div> 
 
-    {{-- $(document).ready(function(){
+<script>
+    $(document).ready(function() {
+        var modal = new bootstrap.Modal(document.getElementById('modal'));
+        var cropper
+        
         @for ($i = 0; $i < 3; $i++)
-        $('#avatarImg{{ $i }}').change(function(e){
-            var reader = new FileReader();
-            reader.onload = function(e){
-                $('#showImg{{ $i }}').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files[0]);
-        });
-        @endfor
-    }); --}}
-
-    <script>
-        $(document).ready(function() {
-            var modal = new bootstrap.Modal(document.getElementById('modal'));
-            var cropper
-            
-            @for ($i = 0; $i < 3; $i++)
-            (function(i) {
-                $('#avatarImg{{$i}}').change(function(event) {
-                    var image = document.getElementById('sample_image');
-                    console.log('Clicked on #avatarImg' + i);
-                    var files = event.target.files;
-                    var done = function(url) {
-                        image.src = url;
-                        modal.show();
+        (function(i) {
+            $('#avatarImg{{$i}}').change(function(event) {
+                var image = document.getElementById('sample_image');
+                console.log('Clicked on #avatarImg' + i);
+                var files = event.target.files;
+                var done = function(url) {
+                    image.src = url;
+                    modal.show();
+                };
+                if (files && files.length > 0) {
+                    var reader = new FileReader();
+                    reader.onload = function(event) {
+                        done(reader.result);
                     };
-                    if (files && files.length > 0) {
-                        var reader = new FileReader();
-                        reader.onload = function(event) {
-                            done(reader.result);
-                        };
-                        reader.readAsDataURL(files[0]);
-                    }
-                    handleCropButtonClick(i, image);
-                    console.log('clicked ID'+i)
+                    reader.readAsDataURL(files[0]);
+                }
+                handleCropButtonClick(i, image);
+                console.log('clicked ID'+i)
+            });
+
+        })({{$i}});
+        @endfor
+
+        function handleCropButtonClick(i,image) {
+            $('#modal').on('shown.bs.modal', function() {
+                if (cropper) {
+                    cropper.destroy();
+                }
+                cropper = new Cropper(image, {
+                    aspectRatio: 1280/480,
+                    viewMode: 1,
+                    preview: '.preview'
                 });
-    
-            })({{$i}});
-            @endfor
+            });
 
-            function handleCropButtonClick(i,image) {
-                $('#modal').on('shown.bs.modal', function() {
-                    if (cropper) {
-                        cropper.destroy();
-                    }
-                    cropper = new Cropper(image, {
-                        aspectRatio: 1280/480,
-                        viewMode: 1,
-                        preview: '.preview'
-                    });
+            $('.crop-btn').off('click').on('click', function() {
+                var canvas = cropper.getCroppedCanvas({
+                    width: 1280,
+                    height: 480
                 });
 
-                $('.crop-btn').off('click').on('click', function() {
-                    var canvas = cropper.getCroppedCanvas({
-                        width: 1280,
-                        height: 480
-                    });
 
-                    // canvas.toBlob(function(blob) {
-                    //     var url = URL.createObjectURL(blob);
-                    //     var reader = new FileReader();
-                    //     reader.readAsDataURL(blob);
-                    //     reader.onloadend = function() {
-                    //         var base64data = reader.result;
-                    //         modal.hide();
-                    //         var currentIndex = i
-                    //         console.log()
-                    //         $('#showImg'+currentIndex).attr('src', base64data);
-                    //         console.log('done');
-                    //     }.bind(this);
-                    // }.bind(this));
+                canvas.toBlob(function(blob) {
+                    var url = URL.createObjectURL(blob);
 
-                    // canvas.toBlob(function(blob) {
-                    //     var file = new File([blob], `MET${i}.jpg`, { type: "image/jpeg" }); // Create a new File object
-                    //     var currentIndex = i;
-                    //     var fileInput = document.getElementById('croppedImg' + currentIndex);
-                    //     var dataTransfer = new DataTransfer();
-                    //     dataTransfer.items.add(file);
-                    //     fileInput.files = dataTransfer.files;
-                        
-                    //     modal.hide();
-                    //     console.log('done');
-                    // }, "image/jpeg");
-
-                    canvas.toBlob(function(blob) {
-                        var url = URL.createObjectURL(blob);
-
-                        var reader = new FileReader();
-                        reader.onloadend = function() {
-                            var base64data = reader.result;
-                            modal.hide();
-                            var currentIndex = i;
-                            $('#showImg' + currentIndex).attr('src', base64data);
-                            console.log('done');
-                        };
-                        reader.readAsDataURL(blob);
-
-                        var file = new File([blob], `MET${i}.jpg`, { type: "image/jpeg" });
-                        var currentIndex = i;
-                        var fileInput = document.getElementById('croppedImg' + currentIndex);
-                        var dataTransfer = new DataTransfer();
-                        dataTransfer.items.add(file);
-                        fileInput.files = dataTransfer.files;
-
+                    var reader = new FileReader();
+                    reader.onloadend = function() {
+                        var base64data = reader.result;
                         modal.hide();
+                        var currentIndex = i;
+                        $('#showImg' + currentIndex).attr('src', base64data);
                         console.log('done');
-                    }, "image/jpeg");
-                });
-            }
-        });
-    </script>
+                    };
+                    reader.readAsDataURL(blob);
+
+                    var file = new File([blob], `MET${i}.jpg`, { type: "image/jpeg" });
+                    var currentIndex = i;
+                    var fileInput = document.getElementById('croppedImg' + currentIndex);
+                    var dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    fileInput.files = dataTransfer.files;
+
+                    modal.hide();
+                    console.log('done');
+                }, "image/jpeg");
+            });
+        }
+    });
+</script>
     
 @endsection
