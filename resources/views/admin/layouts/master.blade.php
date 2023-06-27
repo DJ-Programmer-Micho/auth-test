@@ -80,11 +80,13 @@
     <script src="{{asset('admin/assets/js/main/sb-admin-2.min.js')}}"></script>
     <!-- Page level plugins -->
     <script src="{{asset('admin/assets/vendor/chart.js/Chart.min.js')}}"></script>
+    
+
     @stack('iconscript')
+    @stack('tablescript')
     <!-- Page level custom scripts -->
     {{-- <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script> --}}
-
+    <script src="js/demo/chart-pie-demo.js"></scrip> --}}
 
     {{-- STYLE JS --}}
     <script>
@@ -105,6 +107,33 @@
            break; 
         }
         @endif 
+    </script>
+
+    <script>
+        $(function(){
+    $(document).on('click','#delete',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "Delete This Data?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = link
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+        }
+    }) 
+    });
+  });
     </script>
 </body>
 

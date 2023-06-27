@@ -101,7 +101,7 @@
         </a>
         <div id="aboutus" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Why Choose Us Comp.:</h6>
+                <h6 class="collapse-header">About Us Comp.:</h6>
                 <a class="collapse-item" href="{{route('about.index')}}">Index</a>
                 <a class="collapse-item" href="{{route('about.create')}}">Create</a>
             </div>
@@ -118,6 +118,23 @@
                 <h6 class="collapse-header">Why Choose Us Comp.:</h6>
                 <a class="collapse-item" href="{{route('wcu.index')}}">Index</a>
                 <a class="collapse-item" href="{{route('wcu.create')}}">Create</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#service"
+            aria-expanded="true" aria-controls="service">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Services</span>
+        </a>
+        <div id="service" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Services Comp.:</h6>
+                <a class="collapse-item" href="{{route('service.index')}}">Index</a>
+                <a class="collapse-item" href="{{route('service.create')}}">Create</a>
+                {{-- <a class="collapse-item" href="{{route('serice.create')}}">Create</a> --}}
+                <a class="collapse-item" href="{{route('service.preview')}}">Preview</a>
+                <a class="collapse-item" href="{{route('service.info')}}">Information</a>
             </div>
         </div>
     </li>

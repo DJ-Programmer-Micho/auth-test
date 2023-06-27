@@ -9,6 +9,7 @@ use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Setting\EnvController;
 use App\Http\Controllers\Home\HomeSliderController;
+use App\Http\Controllers\Other\ServicesController;
 use App\Http\Controllers\Other\WhyChooseUsController;
 
 
@@ -119,3 +120,15 @@ Route::controller(WhyChooseUsController::class)->group(function(){
     Route::get('/admin/wcu/create','create')->name('wcu.create'); //ADMIN SIDE PAGE
     Route::post('/admin/wcu/create','store')->name('wcu.store'); //ADMIN SIDE PAGE
 });
+
+Route::controller(ServicesController::class)->group(function(){
+    Route::get('/admin/service','index')->name('service.index'); //ADMIN SIDE PAGE
+    Route::get('/admin/service/create','create')->name('service.create'); //ADMIN SIDE PAGE
+    Route::post('/admin/service/store','store')->name('service.store'); //ADMIN SIDE PAGE
+    Route::get('/admin/service/edit/{id}','edit')->name('service.edit'); //ADMIN SIDE PAGE
+    Route::get('/admin/service/delete/{id}','delete')->name('service.delete'); //ADMIN SIDE PAGE
+    Route::post('/admin/service/update/','update')->name('service.update'); //ADMIN SIDE PAGE
+    Route::get('/admin/service/info','info')->name('service.info'); //ADMIN SIDE PAGE
+    Route::get('/admin/service/preview','preview')->name('service.preview'); //ADMIN SIDE PAGE
+    Route::post('/admin/service/info','add')->name('service.info.store'); //ADMIN SIDE PAGE
+}); 

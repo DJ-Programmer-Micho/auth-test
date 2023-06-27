@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class WhyChooseUsController extends Controller
 {
-    public function index()
-    {
+
+    public function index() {
         $item = WhyChooseUs::find(1);
         $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
 
