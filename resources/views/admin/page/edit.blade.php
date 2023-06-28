@@ -142,10 +142,10 @@
                         "pricing",
                         "qoute",
                         "services",
+                        "services_all",
                         "slider",
                         "team",
                         "testimonial",
-                        "65465465",
                         "whyus"
                       ]
             $.each(asd, function (index, property) {

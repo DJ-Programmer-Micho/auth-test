@@ -38,7 +38,7 @@ class WhyChooseUsController extends Controller
         $imgPath = null;
 
         if ($img) {
-            $filename = date('YdmHi')  .$img->getClientOriginalName(). '.jpg';
+            $filename = date('YdmHi')  .date('v').$img->getClientOriginalName(). '.jpg';
             $resizedImage = resizeAndCompress($img, 1080, 1080);
             $resizedImage->save(public_path('admin/slider/' . $filename),60);
             $imgPath = $filename;

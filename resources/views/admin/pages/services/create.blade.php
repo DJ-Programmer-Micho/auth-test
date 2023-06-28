@@ -98,18 +98,34 @@
                 <div class="col-12 mb-3">
                     <h1 class="mx-2">Image</h1>
                     <hr class="bg-white">
-                    <label for="img">Upload Image</label>
-                    <input type="file" name="img"  id="avatarImg" class="form-control metControl" style="height: auto" value="{{ $properties['img'] ?? '' }}" for="">
+                    <label for="img0">Upload Image</label>
+                    <input type="file" name="img0"  id="avatarImg0" class="form-control metControl" style="height: auto" value="{{ $properties['img0'] ?? '' }}" for="">
                     <small class="text-danger"><b>(Required)</b></small>
-                    <input type="file" name="croppedImg" id="croppedImg" style="display: none;">
+                    <input type="file" name="croppedImg0" id="croppedImg0" style="display: none;">
                 </div>
                 <div class="col">
                     <div class="mb-3 d-flex justify-content-center mt-1">
-                        <img id="showImg" src="{{ (!empty($properties['img']))? url('admin/slider/'.$properties['img'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
+                        <img id="showImg0" src="{{ (!empty($properties['img0']))? url('admin/slider/'.$properties['img0'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
                     </div>
                 </div>
                 </div>
+
+                <div class="card bg-card-dark rounded border-4 mb-2 p-1 text-white">
+                    <div class="col-12 mb-3">
+                        <h1 class="mx-2">Image</h1>
+                        <hr class="bg-white">
+                        <label for="img1">Upload Image</label>
+                        <input type="file" name="img1"  id="avatarImg1" class="form-control metControl" style="height: auto" value="{{ $properties['img1'] ?? '' }}" for="">
+                        <small class="text-danger"><b>(Required)</b></small>
+                        <input type="file" name="croppedImg1" id="croppedImg1" style="display: none;">
+                    </div>
+                    <div class="col">
+                        <div class="mb-3 d-flex justify-content-center mt-1">
+                            <img id="showImg1" src="{{ (!empty($properties['img1']))? url('admin/slider/'.$properties['img1'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
         
         <div class="text-center">
@@ -199,68 +215,93 @@
     </script>
     @endpush
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var modal = new bootstrap.Modal(document.getElementById('modal'));
             var cropper
-            
-                $('#avatarImg').change(function(event) {
-                    var image = document.getElementById('sample_image');
-                    var files = event.target.files;
-                    var done = function(url) {
-                        image.src = url;
-                        modal.show();
-                    };
-                    if (files && files.length > 0) {
-                        var reader = new FileReader();
-                        reader.onload = function(event) {
-                            done(reader.result);
+            @for($i = 0; $i < 2; $i++)
+                (function (i) {
+                    $('#avatarImg{{$i}}').change(function (event) {
+                        var image = document.getElementById('sample_image');
+                        console.log('Clicked on #avatarImg' + i);
+                        var files = event.target.files;
+                        var done = function (url) {
+                            image.src = url;
+                            modal.show();
                         };
-                        reader.readAsDataURL(files[0]);
-                    }
-                    handleCropButtonClick(image);
-                });
+                        if (files && files.length > 0) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                done(reader.result);
+                            };
+                            reader.readAsDataURL(files[0]);
+                        }
+                        handleCropButtonClick(i, image);
+                        console.log('clicked ID' + i)
+                    });
+                })({{$i}});
+            @endfor
 
-
-            function handleCropButtonClick(image) {
-                $('#modal').on('shown.bs.modal', function() {
+            function handleCropButtonClick(i, image) {
+                $('#modal').on('shown.bs.modal', function () {
                     if (cropper) {
                         cropper.destroy();
                     }
-                    cropper = new Cropper(image, {
-                        aspectRatio: 960/540,
-                        viewMode: 1,
-                        preview: '.preview'
-                    });
+
+                    if (i == 0) {
+                        cropper = new Cropper(image, {
+                            aspectRatio: 1920 / 1080,
+                            viewMode: 1,
+                            preview: '.preview'
+                        });
+                    } else {
+                        cropper = new Cropper(image, {
+                            aspectRatio: 2000 / 400,
+                            viewMode: 1,
+                            preview: '.preview'
+                        });
+                    }
                 });
 
-                $('.crop-btn').off('click').on('click', function() {
-                    var canvas = cropper.getCroppedCanvas({
-                        width: 1920,
-                        height: 1080
-                    });
+                $('.crop-btn').off('click').on('click', function () {
+                    var canvas;
 
-                    canvas.toBlob(function(blob) {
+                    if (i == 0) {
+                        canvas = cropper.getCroppedCanvas({
+                            width: 1920,
+                            height: 1080
+                        });
+                    } else {
+                        canvas = cropper.getCroppedCanvas({
+                            width: 2000,
+                            height: 400
+                        });
+                    }
+
+                    canvas.toBlob(function (blob) {
                         var url = URL.createObjectURL(blob);
 
                         var reader = new FileReader();
-                        reader.onloadend = function() {
+                        reader.onloadend = function () {
                             var base64data = reader.result;
                             modal.hide();
-                            $('#showImg').attr('src', base64data);
+                            $('#showImg' + i).attr('src', base64data);
+                            console.log('done');
                         };
                         reader.readAsDataURL(blob);
 
-                        var file = new File([blob], `met_about.jpg`, { type: "image/jpeg" });
-                        var fileInput = document.getElementById('croppedImg');
+                        var file = new File([blob], `service${i}.jpg`, {
+                            type: "image/jpeg"
+                        });
+                        var fileInput = document.getElementById('croppedImg' + i);
                         var dataTransfer = new DataTransfer();
                         dataTransfer.items.add(file);
                         fileInput.files = dataTransfer.files;
 
                         modal.hide();
+                        console.log('done');
                     }, "image/jpeg");
                 });
             }
         });
     </script>
-    
 @endsection

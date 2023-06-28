@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('icon')->nullable();
             $table->string('image')->nullable();
+            $table->string('image_theme')->nullable();
             // $table->integer('status')->nullable();
             $table->timestamps();
         });

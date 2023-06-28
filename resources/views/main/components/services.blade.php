@@ -20,7 +20,7 @@ $items = App\Models\Other\Service::latest()->limit(5)->get();
                         </div>
                         <h4 class="mb-3">{{$item['title']}}</h4>
                         <p class="m-0">{{$item['short_description']}}</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
+                        <a class="btn btn-lg btn-primary rounded" href="{{route('service.details',$item['id'])}}">
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>

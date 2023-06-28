@@ -96,6 +96,9 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('main.pages.indexAbout');
 });
+Route::get('/services', function () {
+    return view('main.pages.indexService');
+});
 
 Route::controller(HomeSliderController::class)->group(function(){
     Route::get('/admin/homeslider','index')->name('home.index'); //ADMIN SIDE PAGE
@@ -131,4 +134,6 @@ Route::controller(ServicesController::class)->group(function(){
     Route::get('/admin/service/info','info')->name('service.info'); //ADMIN SIDE PAGE
     Route::get('/admin/service/preview','preview')->name('service.preview'); //ADMIN SIDE PAGE
     Route::post('/admin/service/info','add')->name('service.info.store'); //ADMIN SIDE PAGE
+    // User Side
+    Route::get('/service/details/{id}','serviceDetails')->name('service.details'); //ADMIN SIDE PAGE
 }); 
