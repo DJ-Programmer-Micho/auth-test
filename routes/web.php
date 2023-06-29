@@ -7,9 +7,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Other\FactController;
 use App\Http\Controllers\About\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Other\PriceController;
 use App\Http\Controllers\Setting\EnvController;
-use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Other\ServicesController;
+use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Other\WhyChooseUsController;
 
 
@@ -136,4 +137,20 @@ Route::controller(ServicesController::class)->group(function(){
     Route::post('/admin/service/info','add')->name('service.info.store'); //ADMIN SIDE PAGE
     // User Side
     Route::get('/service/details/{id}','serviceDetails')->name('service.details'); //ADMIN SIDE PAGE
+}); 
+
+Route::controller(PriceController::class)->group(function(){
+    Route::get('/admin/price','index')->name('price.index'); //ADMIN SIDE PAGE
+    Route::get('/admin/price/create','create')->name('price.create'); //ADMIN SIDE PAGE
+    Route::post('/admin/price/store','store')->name('price.store'); //ADMIN SIDE PAGE
+
+    Route::get('/admin/price/edit/{id}','edit')->name('price.edit'); //ADMIN SIDE PAGE
+    Route::get('/admin/price/delete/{id}','delete')->name('price.delete'); //ADMIN SIDE PAGE
+    Route::post('/admin/price/update/','update')->name('price.update'); //ADMIN SIDE PAGE
+
+    Route::get('/admin/price/info','info')->name('price.info'); //ADMIN SIDE PAGE
+    Route::get('/admin/price/preview','preview')->name('price.preview'); //ADMIN SIDE PAGE
+    Route::post('/admin/price/info','add')->name('price.info.store'); //ADMIN SIDE PAGE
+    // User Side
+    // Route::get('/service/details/{id}','serviceDetails')->name('service.details'); //ADMIN SIDE PAGE
 }); 

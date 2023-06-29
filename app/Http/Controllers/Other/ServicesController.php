@@ -144,6 +144,7 @@ class ServicesController extends Controller
 
         return view('admin.pages.services.preview', compact('properties'));
     } //End Function
+    
     public function info(){
         $item = ServiceInfo::find(1);
         
