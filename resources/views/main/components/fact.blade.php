@@ -1,5 +1,5 @@
 @php
-$item = App\Models\Other\Fact::find(1);
+$item = App\Models\Components\Fact::find(1);
 $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
 @endphp
     

@@ -3,30 +3,93 @@
 namespace App\Http\Controllers\Other;
 
 use App\Http\Controllers\Controller;
-use App\Models\Other\WhyChooseUs;
+use App\Models\Components\WhyChooseUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; //NEW Facade
 
 class WhyChooseUsController extends Controller
 {
 
     public function index() {
-        $item = WhyChooseUs::find(1);
+        //Fixed Function Var
+        $specificId = 1;
+        $item = WhyChooseUs::find($specificId);
+        // One Shot Condition if Data is Empty
+        if (!$item) {
+            $item = new WhyChooseUs();
+            $item->id = 1;
+            $item->save();
+            $data = [ 
+                [
+                    'tag_title' => 'Why Us?', 
+                    'title' => 'MET IRAQ, Has the Only Services you need in iraq', 
+                    'title0' => 'Amazon Web Services (AWS)',
+                    'shortDescription0' => 'Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable compute capacity in the cloud.',
+                    'icon0' => 'fab fa-amazon',
+                    'title1' => 'Virtual Private Server (VPS)',
+                    'shortDescription1' => ' It is a type of hosting service that provides a virtualized server environment within a physical server.',
+                    'icon1' => 'fas fa-server ',
+                    'title2' => 'Content Management System (CMS)',
+                    'shortDescription2' => 'tools that allows website owners and administrators to create, manage, and modify digital content on their websites.',
+                    'icon2' => 'fas fa-expand-arrows-alt',
+                    'title3' => 'Secure Sockets Layer (SSL)',
+                    'shortDescription3' => 'is a cryptographic protocol that provides secure communication over the internet.',
+                    'icon3' => 'fas fa-shield-alt',
+                    'img' => 'why-us.png',
+                ]
+            ];
+            $get_file_data_slide1 = file_get_contents(public_path('admin/demo/why-us.png'));
+            Storage::disk('s3')->put('ttsiraq/why-us/why-us.png', $get_file_data_slide1, 'public');
+
+            $item->properties = json_encode($data);
+            $item->save();
+
+            $properties = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
+            return view('admin.pages.whyChooseUs.index', compact('properties'));
+        }// End of One Shot Condition if Data is Empty
         $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
 
         return view('admin.pages.whyChooseUs.index', compact('properties'));
     } //End Method
 
     public function create(){
-        $item = WhyChooseUs::find(1);
-        
+        //Fixed Function Var
+        $specificId = 1;
+        $item = WhyChooseUs::find($specificId);
+        // One Shot Condition if Data is Empty
         if (!$item) {
             $item = new WhyChooseUs();
             $item->id = 1;
             $item->save();
-        }
+            $data = [ 
+                [
+                    'tag_title' => 'Why Us?', 
+                    'title' => 'MET IRAQ, Has the Only Services you need in iraq', 
+                    'title0' => 'Amazon Web Services (AWS)',
+                    'shortDescription0' => 'Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable compute capacity in the cloud.',
+                    'icon0' => 'fab fa-amazon',
+                    'title1' => 'Virtual Private Server (VPS)',
+                    'shortDescription1' => ' It is a type of hosting service that provides a virtualized server environment within a physical server.',
+                    'icon1' => 'fas fa-server ',
+                    'title2' => 'Content Management System (CMS)',
+                    'shortDescription2' => 'tools that allows website owners and administrators to create, manage, and modify digital content on their websites.',
+                    'icon2' => 'fas fa-expand-arrows-alt',
+                    'title3' => 'Secure Sockets Layer (SSL)',
+                    'shortDescription3' => 'is a cryptographic protocol that provides secure communication over the internet.',
+                    'icon3' => 'fas fa-shield-alt',
+                    'img' => 'why-us.png',
+                ]
+            ];
+            $get_file_data_slide1 = file_get_contents(public_path('admin/demo/why-us.png'));
+            Storage::disk('s3')->put('ttsiraq/why-us/why-us.png', $get_file_data_slide1, 'public');
 
+            $item->properties = json_encode($data);
+            $item->save();
+
+            $properties = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
+            return view('admin.pages.whyChooseUs.create', compact('properties'));
+        }// End of One Shot Condition if Data is Empty
         $properties = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
- 
         return view('admin.pages.whyChooseUs.create', compact('properties'));
     } //End Function
 

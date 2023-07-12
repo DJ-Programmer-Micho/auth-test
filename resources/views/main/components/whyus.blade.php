@@ -1,5 +1,5 @@
 @php
-$item = App\Models\Other\WhyChooseUs::find(1);
+$item = App\Models\Components\WhyChooseUs::find(1);
 $property = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
 @endphp
 
@@ -31,7 +31,7 @@ $property = optional($item)->properties ? json_decode($item->properties, true)[0
                 </div>
                 <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s" src="{{url('admin/slider/'.$property['img'])}}" style="object-fit: cover;">
+                        <img class="position-absolute w-100 rounded wow zoomIn" data-wow-delay="0.1s" src="{{url('https://d26ttzql3lait9.cloudfront.net/ttsiraq/why-us/'.$property['img'])}}" >
                     </div>
                 </div>
                 <div class="col-lg-4">

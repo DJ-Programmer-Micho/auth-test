@@ -114,7 +114,7 @@
                     <input type="file" name="croppedImg{{ $i }}" id="croppedImg{{ $i }}" style="display: none;">
                 </div>
                 <div class="col-12 mb-3 text-center">
-                    <img id="showImg{{$i}}" src="{{ (!empty($properties[$i]['img']))? url('admin/slider/'.$properties[$i]['img'] ):url('admin/avatars/empty.svg')}}" width="90" class="img-thumbnail rounded">
+                    <img id="showImg{{$i}}" src="{{ (!empty($properties[$i]['img']))? 'https://d26ttzql3lait9.cloudfront.net/ttsiraq/homeSlider/'.$properties[$i]['img'] :url('admin/avatars/empty.svg')}}" width="90" class="img-thumbnail rounded">
                 </div>
                 <input type="hidden" id="asd{{$i}}" value="{{$i}}">
                 @endfor

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Other;
+namespace App\Models\Components;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Fact extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['properties', /* other fillable fields */];
 }

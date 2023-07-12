@@ -9,7 +9,8 @@
         <div class="carousel-inner">
             @foreach($properties as $index => $property)
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <img class="w-100" src="{{ url('admin/slider/'.$property['img']) }}" alt="Slide Image">
+                    {{-- <img class="w-100" src="{{ url('admin/slider/'.$property['img']) }}" alt="Slide Image"> --}}
+                    <img class="w-100" src="{{ 'https://d26ttzql3lait9.cloudfront.net/ttsiraq/homeSlider/'.$property['img'] }}" alt="{{$property['img']}}">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">{{ $property['short_title'] }}</h5>
@@ -33,7 +34,6 @@
     <div class="text-center">
         <a href="{{route('home.create')}}" class="btn btn-danger text-white px-3">Edit Slider</a>
     </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('main/assets/js/main.js')}}"></script>
 @endsection

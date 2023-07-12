@@ -3,31 +3,99 @@
 namespace App\Http\Controllers\Other;
 
 use App\Http\Controllers\Controller;
-use App\Models\Other\Fact;
+use App\Models\Components\Fact;
 use Illuminate\Http\Request;
 
 class FactController extends Controller
 {
     public function index()
     {
-        $item = Fact::find(1);
-        $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
+        //Fixed Function variable
+        $specificId = 1;
+        $item = Fact::find($specificId);
+        //One Shot Condition if Data is Empty
+        if (!$item) {
+            $item = new Fact();
+            $item->id = $specificId;
+            $item->save();
 
+            $data = [ 
+                [
+                    'title' => 'Projects', 
+                    'synmbolL' => '',
+                    'count' => '53',
+                    'symbolR' => '+',
+                    'icon' => 'fas fa-project-diagram',
+                ],
+                [
+                    'title' => 'Happy Clients', 
+                    'synmbolL' => '%',
+                    'count' => '98',
+                    'symbolR' => '',
+                    'icon' => 'fas far fa-smile-beam',
+                ],
+                [
+                    'title' => 'Employee', 
+                    'synmbolL' => '',
+                    'count' => '25',
+                    'symbolR' => '+',
+                    'icon' => 'fas fa-users',
+                ],
+
+            ];
+            $item->properties = json_encode($data);
+            $item->save();
+
+            $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
+            return view('admin.pages.facts.index', compact('properties'));
+        }
+
+        $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
         return view('admin.pages.facts.index', compact('properties'));
     } //End Method
 
     public function create()
     {
-        $item = Fact::find(1);
-
+        //Fixed Function variable
+        $specificId = 1;
+        $item = Fact::find($specificId);
+        // One Shot Condition if Data is Empty
         if (!$item) {
             $item = new Fact();
-            $item->id = 1;
+            $item->id = $specificId;
             $item->save();
-        }
 
+            $data = [ 
+                [
+                    'title' => 'Projects', 
+                    'synmbolL' => '',
+                    'count' => '53',
+                    'symbolR' => '+',
+                    'icon' => 'fas fa-project-diagram',
+                ],
+                [
+                    'title' => 'Happy Clients', 
+                    'synmbolL' => '%',
+                    'count' => '98',
+                    'symbolR' => '',
+                    'icon' => 'fas far fa-smile-beam',
+                ],
+                [
+                    'title' => 'Employee', 
+                    'synmbolL' => '',
+                    'count' => '25',
+                    'symbolR' => '+',
+                    'icon' => 'fas fa-users',
+                ],
+
+            ];
+            $item->properties = json_encode($data);
+            $item->save();
+
+            $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
+            return view('admin.pages.facts.create', compact('properties'));
+        }// End of One Shot Condition if Data is Empty
         $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
- 
         return view('admin.pages.facts.create', compact('properties'));
     } //End Method
 

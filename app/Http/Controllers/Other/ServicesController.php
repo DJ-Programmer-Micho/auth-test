@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Other;
 
 use Illuminate\Http\Request;
-use App\Models\Other\Service;
-use App\Models\Other\ServiceInfo;
+use App\Models\Components\Service;
+use App\Models\Components\ServiceInfo;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
 

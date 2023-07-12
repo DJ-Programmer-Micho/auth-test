@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Components;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class About extends Model
+class HomeSlide extends Model
 {
     use HasFactory;
 
