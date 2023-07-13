@@ -1,7 +1,7 @@
 @php
-$ServiceInfoData = App\Models\Other\ServiceInfo::find(1);
+$ServiceInfoData = App\Models\Components\ServiceInfo::find(1);
 $ServiceInfoItem = optional($ServiceInfoData)->properties ? json_decode($ServiceInfoData->properties, true)[0] : null;
-$items = App\Models\Other\Service::latest()->get();
+$items = App\Models\Components\Service::latest()->get();
 @endphp
     
     <!-- Service Start -->

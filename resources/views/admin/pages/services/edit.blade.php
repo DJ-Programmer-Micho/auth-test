@@ -104,7 +104,7 @@
                 </div>
                 <div class="col">
                     <div class="mb-3 d-flex justify-content-center mt-1">
-                        <img id="showImg0" src="{{ (!empty($items['image']))? url('admin/slider/'.$items['image'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
+                        <img id="showImg0" src="{{ (!empty($items['image']))? url('https://d26ttzql3lait9.cloudfront.net/ttsiraq/services/'.$items['image'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
                     </div>
                 </div>
                 </div>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col">
                         <div class="mb-3 d-flex justify-content-center mt-1">
-                            <img id="showImg1" src="{{ (!empty($items['image_theme']))? url('admin/slider/'.$items['image_theme'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
+                            <img id="showImg1" src="{{ (!empty($items['image_theme']))? url('https://d26ttzql3lait9.cloudfront.net/ttsiraq/services/'.$items['image_theme'] ):url('admin/avatars/empty.svg')}}" width="250" class="img-thumbnail rounded">
                         </div>
                     </div>
                 </div>

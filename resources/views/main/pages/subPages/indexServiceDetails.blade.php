@@ -1,7 +1,7 @@
 @extends('main.layouts.master')
 
 @section('content')
-<div class="container-fluid bg-primary py-5 " style="margin-bottom: 90px; background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url({{url('admin/slider/'.$serviceDetail['image_theme'])}}) center center no-repeat;">
+<div class="container-fluid bg-primary py-5 " style="margin-bottom: 90px; background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url({{url('https://d26ttzql3lait9.cloudfront.net/ttsiraq/services/'.$serviceDetail['image_theme'])}}) center center no-repeat;">
     <div class="row py-5">
         <div class="col-12 pt-lg-5 mt-lg-5 text-center">
             <h1 class="display-4 text-white animated zoomIn">Sevice Detail</h1>
@@ -18,7 +18,7 @@
                 <div class="col-lg-8">
                     <!-- Blog Detail Start -->
                     <div class="mb-5">
-                        <img class="img-fluid w-100 rounded mb-5" src="{{url('admin/slider/'.$serviceDetail['image'])}}" alt="">
+                        <img class="img-fluid w-100 rounded mb-5" src="{{url('https://d26ttzql3lait9.cloudfront.net/ttsiraq/services/'.$serviceDetail['image'])}}" alt="">
                         <h1 class="mb-4">{{$serviceDetail['title']}}</h1>
                         <p>{{$serviceDetail['short_description']}}</p><br><br>
                         <p>{{$serviceDetail['description']}}</p>

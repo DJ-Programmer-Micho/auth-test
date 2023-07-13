@@ -133,6 +133,11 @@ class WhyChooseUsController extends Controller
             'properties' => json_encode($data),
         ]);
 
-        return redirect()->route('wcu.index');
+        $notification = array(
+            'message' => 'Blog Inserted Successfully',
+            'alert-type' => 'success'
+        );
+        
+        return redirect()->route('wcu.index')->with($notification);
     } //End Function
 }

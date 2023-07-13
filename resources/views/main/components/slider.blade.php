@@ -1,5 +1,5 @@
 @php
-    $item = App\Models\HomeSlide::find(1);
+    $item = App\Models\Components\HomeSlide::find(1);
     $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
 @endphp
 
@@ -7,7 +7,7 @@
     <div class="carousel-inner">
         @foreach($properties as $index => $property)
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                <img class="w-100" src="{{ url('admin/slider/'.$property['img']) }}" alt="Slide Image">
+                <img class="w-100" src="{{ url('https://d26ttzql3lait9.cloudfront.net/ttsiraq/homeSlider/'.$property['img']) }}" alt="Slide Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
                         <h5 class="text-white text-uppercase mb-3 animated slideInDown">{{ $property['short_title'] }}</h5>

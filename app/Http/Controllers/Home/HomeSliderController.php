@@ -184,6 +184,11 @@ class HomeSliderController extends Controller
             'properties' => json_encode($data),
         ]);
   
-        return redirect()->route('home.index');
+        $notification = array(
+            'message' => 'Blog Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('home.index')->with($notification);
     } //End Function
 }

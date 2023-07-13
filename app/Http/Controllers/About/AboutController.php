@@ -60,7 +60,7 @@ class AboutController extends Controller
         // One Shot Condition if Data is Empty
         if (!$item) {
             $item = new About();
-            $item->id = 1;
+            $item->id = $specificId;
             $item->save();
             $data = [ 
                 [
@@ -132,5 +132,10 @@ class AboutController extends Controller
             'properties' => json_encode($data),
         ]);
 
-        return redirect()->route('about.index');
+        $notification = array(
+            'message' => 'Blog Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('about.index')->with($notification);
     }}

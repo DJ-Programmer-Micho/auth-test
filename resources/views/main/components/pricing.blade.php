@@ -1,7 +1,7 @@
 @php
-$ServiceInfoData = App\Models\Other\PriceDetail::find(1);
+$ServiceInfoData = App\Models\Components\PriceDetail::find(1);
 $ServiceInfoItem = optional($ServiceInfoData)->properties ? json_decode($ServiceInfoData->properties, true)[0] : null;
-$items = App\Models\Other\Price::latest()->limit(3)->get();
+$items = App\Models\Components\Price::latest()->limit(3)->get();
 @endphp
 
 <style>
@@ -32,7 +32,7 @@ $items = App\Models\Other\Price::latest()->limit(3)->get();
                         </div>
                         <div class="p-5 pt-0 mb-5">
                             <h1 class="display-5 mb-3">
-                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>{{$item['price']}}<small
+                                <small class="align-top" style="font-size: 22px; line-height: 45px;"></small>{{$item['price']}}<small
                                     class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
                             </h1>
                             @foreach (json_decode($item['info'],true) as $index => $property)

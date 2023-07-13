@@ -11,6 +11,7 @@ use App\Http\Controllers\Other\PriceController;
 use App\Http\Controllers\Setting\EnvController;
 use App\Http\Controllers\Other\ServicesController;
 use App\Http\Controllers\Home\HomeSliderController;
+use App\Http\Controllers\Other\QouteController;
 use App\Http\Controllers\Other\WhyChooseUsController;
 
 
@@ -72,7 +73,8 @@ Route::controller(PageController::class)->group(function(){
 
 require __DIR__.'/auth.php';
 
-
+// Qoute Message
+Route::post('qoute_mail',[QouteController::class, 'qoute_mail_send']);
 
 /*
 |--------------------------------------------------------------------------

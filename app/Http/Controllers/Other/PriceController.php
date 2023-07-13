@@ -2,16 +2,53 @@
 
 namespace App\Http\Controllers\Other;
 
-use App\Models\Other\Price;
+use App\Models\Components\Price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-use App\Models\Other\PriceDetail;
+use App\Models\Components\PriceDetail;
 
 class PriceController extends Controller
 {
     public function index(){
         $items = Price::latest()->get();
+        // One Shot Condition if Data is Empty
+        if ($items->isEmpty()) {
+            $data = [ 
+                [
+                    'name' => 'Bundle 1', 
+                    'exp' => 'Begin',
+                    'price' => '$100 / Month',
+                    'info' => '{"0":{"text":"Service 1","icon":"fa-check"},"1":{"text":"Service 2","icon":"fa-check"},"6":{"text":"Service 3","icon":"fa-xmark"},"3":{"text":"Service 4","icon":"fa-xmark"}}',
+                    'btn_txt' => 'Let\'s Start',
+                    'btn_url' => 'https://metiraq.com',
+                    'created_at' => Carbon::now(),
+                ],
+                [
+                    'name' => 'Bundle 2', 
+                    'exp' => 'Super',
+                    'price' => '$150 / Month',
+                    'info' => '{"0":{"text":"Service 1","icon":"fa-check"},"1":{"text":"Service 2","icon":"fa-check"},"6":{"text":"Service 3","icon":"fa-check"},"3":{"text":"Service 4","icon":"fa-xmark"}}',
+                    'btn_txt' => 'Let\'s Go',
+                    'btn_url' => 'https://metiraq.com',
+                    'created_at' => Carbon::now(),
+                ],
+                [
+                    'name' => 'Bundle 3', 
+                    'exp' => 'Enterprise',
+                    'price' => '$250 / Month',
+                    'info' => '{"0":{"text":"Service 1","icon":"fa-check"},"1":{"text":"Service 2","icon":"fa-check"},"6":{"text":"Service 3","icon":"fa-check"},"3":{"text":"Service 4","icon":"fa-check"}}',
+                    'btn_txt' => 'Best Deal',
+                    'btn_url' => 'https://metiraq.com',
+                    'created_at' => Carbon::now(),
+                ],
+            ];
+            for($i =0;$i<=2;$i++){
+                Price::insert([$data[$i]]);
+            }
+            return view('admin.pages.pricing.index', compact('items'));
+        }// End of One Shot Condition if Data is Empty
+
         return view('admin.pages.pricing.index', compact('items'));
     } //End Function
 
@@ -47,16 +84,29 @@ class PriceController extends Controller
     } //End Function
 
     public function info(){
-        $item = PriceDetail::find(1);
-        
+        //Fixed Function Var
+        $specificId = 1;
+        $item = PriceDetail::find($specificId);
+
+        // One Shot Condition if Data is Empty
         if (!$item) {
             $item = new PriceDetail();
-            $item->id = 1;
+            $item->id = $specificId;
             $item->save();
-        }
+            $data = [ 
+                [
+                    'tag_title' => 'Price', 
+                    'title' => 'MET IRAQ, Best Price Of Each Service', 
+                ]
+            ];
+            $item->properties = json_encode($data);
+            $item->save();
+
+            $properties = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
+            return view('admin.pages.pricing.info', compact('properties'));
+        }// End of One Shot Condition if Data is Empty
 
         $properties = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
- 
         return view('admin.pages.pricing.info', compact('properties'));
     } //End Function
 
@@ -77,14 +127,67 @@ class PriceController extends Controller
     } //End Function
 
     public function preview(){
-        $item = PriceDetail::find(1);
+        //Fixed Function Var
+        $specificId = 1;
+        $item = PriceDetail::find($specificId);
 
+        // One Shot Condition if Data is Empty
         if (!$item) {
             $item = new PriceDetail();
-            $item->id = 1;
+            $item->id = $specificId;
             $item->save();
-        }
+            $data = [ 
+                [
+                    'tag_title' => 'Price', 
+                    'title' => 'MET IRAQ, Best Price Of Each Service', 
+                ]
+            ];
+            $item->properties = json_encode($data);
+            $item->save();
 
+            $properties = optional($item)->properties ? json_decode($item->properties, true)[0] : null;
+            return view('admin.pages.pricing.preview', compact('properties'));
+        }// End of One Shot Condition if Data is Empty
+
+
+        $items = Price::latest()->get();
+        // One Shot Condition if Data is Empty
+        if ($items->isEmpty()) {
+            $data = [ 
+                [
+                    'name' => 'Bundle 1', 
+                    'exp' => 'Begin',
+                    'price' => '$100 / Month',
+                    'info' => '{"0":{"text":"Service 1","icon":"fa-check"},"1":{"text":"Service 2","icon":"fa-check"},"6":{"text":"Service 3","icon":"fa-xmark"},"3":{"text":"Service 4","icon":"fa-xmark"}}',
+                    'btn_txt' => 'Let\'s Start',
+                    'btn_url' => 'https://metiraq.com',
+                    'created_at' => Carbon::now(),
+                ],
+                [
+                    'name' => 'Bundle 2', 
+                    'exp' => 'Super',
+                    'price' => '$150 / Month',
+                    'info' => '{"0":{"text":"Service 1","icon":"fa-check"},"1":{"text":"Service 2","icon":"fa-check"},"6":{"text":"Service 3","icon":"fa-check"},"3":{"text":"Service 4","icon":"fa-xmark"}}',
+                    'btn_txt' => 'Let\'s Go',
+                    'btn_url' => 'https://metiraq.com',
+                    'created_at' => Carbon::now(),
+                ],
+                [
+                    'name' => 'Bundle 3', 
+                    'exp' => 'Enterprise',
+                    'price' => '$250 / Month',
+                    'info' => '{"0":{"text":"Service 1","icon":"fa-check"},"1":{"text":"Service 2","icon":"fa-check"},"6":{"text":"Service 3","icon":"fa-check"},"3":{"text":"Service 4","icon":"fa-check"}}',
+                    'btn_txt' => 'Best Deal',
+                    'btn_url' => 'https://metiraq.com',
+                    'created_at' => Carbon::now(),
+                ],
+
+            ];
+            for($i =0;$i<=2;$i++){
+                Price::insert([$data[$i]]);
+            }
+            return view('admin.pages.pricing.preview', compact('items'));
+        }// End of One Shot Condition if Data is Empty
         $properties = optional($item)->properties ? json_decode($item->properties, true) : null;
 
         return view('admin.pages.pricing.preview', compact('properties'));

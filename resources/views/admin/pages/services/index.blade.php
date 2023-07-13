@@ -43,7 +43,7 @@
                     <td>{{$item['title']}}</td>
                     <td>{{$item->short_description}}</td>
                     <td><i class="fa-solid {{$item['icon']}}"></i></td>
-                    <td><img src="{{url('admin/slider/'.$item['image'])}}" width="100px" alt=""></td>
+                    <td><img src="{{url('https://d26ttzql3lait9.cloudfront.net/ttsiraq/services/'.$item['image'])}}" width="100px" alt=""></td>
                     <td>{{$item['created_at']}}</td>
                     <td>
                         <a href="{{route('service.edit',$item['id'])}}" class="btn btn-info"><i class="fa-regular fa-pen-to-square"></i></a>
